@@ -1,12 +1,18 @@
 <template>
-    <h1>asd</h1>
+    <div class="wrapper">
+        <TheHeader/>
+    </div>
 </template>
 
 <script>
+import TheHeader from '@/components/TheHeader';
 
 export default {
     name: 'App',
-    components: {},
+
+    components: {
+        TheHeader,
+    },
 
     data() {
         return {
