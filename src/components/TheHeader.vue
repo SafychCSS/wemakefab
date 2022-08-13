@@ -1,22 +1,24 @@
 <template>
     <div class="header">
-        <div class="container header__container">
-            <div class="row header__row">
-                <div class="col">
-                    <div class="header__logo">S—Shop</div>
-                </div>
-                <div class="col header__menu">
-                    <ul class="menu">
-                        <li class="menu__item menu__item_active menu__item_catalog">
-                            <a class="menu__link" href="#">Catalog</a>
-                        </li>
-                        <li class="menu__item">
-                            <a class="menu__link" href="#">Profile</a>
-                        </li>
-                        <li class="menu__item">
-                            <a class="menu__link" href="#">Basket(2)</a>
-                        </li>
-                    </ul>
+        <div class="container">
+            <div class="header__container">
+                <div class="row header__row">
+                    <div class="col">
+                        <div class="header__logo">S—Shop</div>
+                    </div>
+                    <div class="col header__menu">
+                        <ul class="menu">
+                            <li class="menu__item menu__item_active menu__item_catalog">
+                                <a class="menu__link" href="#">Catalog</a>
+                            </li>
+                            <li class="menu__item">
+                                <a class="menu__link" href="#">Profile</a>
+                            </li>
+                            <li class="menu__item">
+                                <a class="menu__link" href="#">Basket(2)</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,7 +34,9 @@ export default {
 <style lang="scss" scoped>
 .header {
     &__container {
-        padding: 35px 0;
+        padding-top: 35px;
+        padding-bottom: 35px;
+
         border-bottom: 1px solid #BDBDBD;
     }
 
