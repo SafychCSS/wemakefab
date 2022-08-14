@@ -1,0 +1,72 @@
+[
+  {
+    "id" : 1,
+    "name": "Converse Kids 70",
+    "category": "Sneakers",
+    "price": 49.99,
+    "image": "converse-kids-70"
+  },
+  {
+    "id" : 2,
+    "name": "Converse Chuck 70",
+    "category": "Sneakers",
+    "price": 49.99,
+    "image": "converse-chuck-70"
+  },
+  {
+    "id" : 3,
+    "name": "Converse Chuck 70 Renew High Top",
+    "category": "Sneakers",
+    "price": 50.99,
+    "oldPrice": 84.99,
+    "sale": 40,
+    "hot": true,
+    "image": "converse-chuck-70-renew-high-top"
+  },
+  {
+    "id" : 4,
+    "name": "Converse Pro Chuck 80",
+    "category": "Sneakers",
+    "price": 64.99,
+    "oldPrice": 99.99,
+    "sale": 35,
+    "image": "converse-pro-chuck-80"
+  },
+  {
+    "id" : 5,
+    "name": "Converse Winter Chuck 70",
+    "category": "Sneakers",
+    "price": 79.99,
+    "oldPrice": 99.99,
+    "sale": 20,
+    "image": "converse-winter-chuck-70"
+  },
+  {
+    "id" : 6,
+    "name": "Converse Winter Chuck 70 Full Black",
+    "category": "Sneakers",
+    "price": 129.99,
+    "image": "converse-winter-chuck-70-full-black"
+  },
+  {
+    "id" : 7,
+    "name": "Converse Winter Chuck 70 Black/White",
+    "category": "Sneakers",
+    "price": 99.99,
+    "image": "converse-winter-chuck-70-black-white"
+  },
+  {
+    "id" : 8,
+    "name": "Nike Air Zoom Pegasus 39",
+    "category": "Running shoes",
+    "price": 130,
+    "image": "converse-winter-chuck-70-black-white"
+  },
+  {
+    "id" : 9,
+    "name": "Nike Air Zoom Structure 24",
+    "category": "Running shoes",
+    "price": 105,
+    "image": "converse-winter-chuck-70-black-white"
+  }
+]
