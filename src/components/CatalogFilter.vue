@@ -162,7 +162,7 @@ export default {
         width: 14px;
         height: 7px;
 
-        stroke: red;
+        stroke: #000;
 
         transform: translateY(-50%);
     }

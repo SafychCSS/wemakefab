@@ -22,10 +22,25 @@
                 ${{ itemCard.oldPrice }}
             </span>
         </div>
-        <button class="btn card__btn">
+        <button
+            v-if="!itemCard.status"
+            @click="addToCart(itemCard)"
+            class="btn card__btn"
+            :class="{'card__btn_added': itemCard.status}"
+        >
             Add to basket
-            <svg class="card__btn-icon">
+            <svg class="card__btn-icon card__btn-icon_rotate">
                 <use :xlink:href="sprite + '#icon-plus'"></use>
+            </svg>
+        </button>
+        <button
+            v-else
+            @click="addToCart(itemCard)"
+            class="btn card__btn card__btn_added"
+        >
+            Added
+            <svg class="card__btn-icon">
+                <use :xlink:href="sprite + '#icon-check'"></use>
             </svg>
         </button>
     </div>
@@ -48,6 +63,12 @@ export default {
         return {
             sprite,
         };
+    },
+
+    methods: {
+        addToCart(item) {
+            this.$store.dispatch('addToCard', item);
+        },
     },
 };
 </script>
@@ -96,6 +117,13 @@ export default {
 
         margin-top: 15px;
         text-align: left;
+
+        &:hover {
+            .card__btn-icon_rotate {
+                transform-origin: center;
+                transform: translateY(-50%) rotate(-90deg);
+            }
+        }
     }
 
     &__btn-icon {
@@ -107,6 +135,19 @@ export default {
         height: 16px;
 
         transform: translateY(-50%);
+
+        transition: .2s;
+    }
+
+    &__btn_added {
+        color: #000;
+
+        border: 1px solid #000000;
+        background-color: #fff;
+
+        .card__btn-icon {
+            stroke: currentColor;
+        }
     }
 }
 </style>

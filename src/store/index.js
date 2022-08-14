@@ -4,6 +4,7 @@ import {createStore} from 'vuex';
 export default createStore({
     state: {
         goods: [],
+        cart: [],
     },
 
     getters: {
@@ -17,16 +18,32 @@ export default createStore({
         setGoods(state, payload) {
             state.goods = payload;
         },
+
+        setCart(state, payload) {
+            state.cart.push(payload);
+        },
     },
 
     actions: {
-        async loadGoods({commit}) {
+        async loadGoods({ commit }) {
             try {
                 const result = await axios('../data.json');
                 commit('setGoods', result.data);
             } catch (e) {
                 console.error(e.message);
             }
+        },
+
+        addToCard({ commit, state }, payload) {
+            const isAdded = state.cart.find(item => item.id === payload.id);
+            if (isAdded) {
+                return;
+            }
+
+            const addedItem = state.goods.find(item => item.id === payload.id);
+            addedItem.status = 'in-cart';
+            payload.status = 'in-cart';
+            commit('setCart', payload);
         },
     },
 });
