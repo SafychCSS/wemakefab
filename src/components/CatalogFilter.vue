@@ -1,13 +1,21 @@
 <template>
     <div class="container">
-        <form class="filters">
+        <form @submit.prevent="applyFilters" class="filters">
             <div class="row">
                 <div class="col">
                     <div class="filters__item">
                         <p class="filters__name">Search</p>
                         <div class="filters__search">
-                            <input class="filters__field" value="asd" type="text">
-                            <button class="filters__search-reset" type="button">
+                            <input
+                                v-model="form.search"
+                                class="filters__field"
+                                type="text"
+                            >
+                            <button
+                                @click="form.search = ''"
+                                class="filters__search-reset"
+                                type="button"
+                            >
                                 <svg>
                                     <use :xlink:href="sprite + '#icon-close'"></use>
                                 </svg>
@@ -19,10 +27,16 @@
                     <div class="filters__item">
                         <p class="filters__name">Product category</p>
                         <div class="filters__select">
-                            <select class="filters__field">
-                                <option value="1">Sneakers</option>
-                                <option value="2">Sneakers2</option>
-                                <option value="3">Sneakers4</option>
+                            <select
+                                v-model="form.category"
+                                class="filters__field"
+                            >
+                                <option
+                                    v-for="(cat, idx) of categories"
+                                    :key="idx"
+                                >
+                                    {{ cat }}
+                                </option>
                             </select>
                             <svg class="filters__select-arrow">
                                 <use :xlink:href="sprite + '#icon-select'"></use>
@@ -34,10 +48,13 @@
                     <div class="filters__item">
                         <p class="filters__name">Sale</p>
                         <div class="filters__select">
-                            <select class="filters__field">
-                                <option value="1">Bestsellers</option>
-                                <option value="2">Bestsellers2</option>
-                                <option value="3">Bestsellers4</option>
+                            <select
+                                v-model="form.sale"
+                                class="filters__field"
+                            >
+                                <option value="bestsellers">Bestsellers</option>
+                                <option value="high">Price: High-Low</option>
+                                <option value="low">Price: Low-High</option>
                             </select>
                             <svg class="filters__select-arrow">
                                 <use :xlink:href="sprite + '#icon-select'"></use>
@@ -62,7 +79,25 @@ export default {
     data() {
         return {
             sprite,
+            form: {
+                search: '',
+                category: 'Sneakers',
+                sale: 'bestsellers',
+            },
+
+            categories: null,
         };
+    },
+
+    created() {
+        this.categories = this.$store.getters.categories;
+    },
+
+    methods: {
+        applyFilters() {
+            console.log('filters change');
+            this.$emit('changeFilters', this.form);
+        },
     },
 };
 </script>

@@ -61,10 +61,20 @@ button {
     width: calc(25% - 20px);
     margin-left: 10px;
     margin-right: 10px;
-}
 
-.col-half {
-    width: 50%;
+    &_half {
+        width: calc(50% - 20px);
+
+        .btn {
+            width: calc(50% - 10px);
+        }
+    }
+
+    &_content_bottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
 }
 
 .btn {
