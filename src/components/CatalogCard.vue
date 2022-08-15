@@ -9,6 +9,7 @@
         <div class="card__image">
             <img
                 :src="require(`../assets/images/goods/${itemCard.image}.jpg`)"
+                :srcset="require(`../assets/images/goods/${itemCard.image}@2x.jpg`)"
                 :alt="itemCard.name"
             >
         </div>
@@ -134,8 +135,9 @@ export default {
         width: 16px;
         height: 16px;
 
-        transform: translateY(-50%);
+        stroke: currentColor;
 
+        transform: translateY(-50%);
         transition: .2s;
     }
 

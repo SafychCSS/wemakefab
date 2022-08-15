@@ -15,25 +15,56 @@
                                 <a class="menu__link" href="#">Profile</a>
                             </li>
                             <li class="menu__item">
-                                <a class="menu__link" href="#">Basket(2)</a>
+                                <a
+                                    @click.prevent="toggleCart(true)"
+                                    class="menu__link"
+                                    href="#"
+                                >
+                                    Basket({{ this.$store.state.cart.length }})
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </div>
+                <CatalogCart
+                    :show-cart="showCart"
+                    @toggleCart="$emit('toggleCart', false)"
+                />
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import CatalogCart from '@/components/CatalogCart';
+
 export default {
-    name: 'TheHeader'
+    name: 'TheHeader',
+
+    components: {
+        CatalogCart,
+    },
+
+    props: {
+        showCart: {
+            type: Boolean,
+            required: true,
+        },
+    },
+
+    methods: {
+        toggleCart(flag) {
+            this.$emit('toggleCart', flag);
+        }
+    },
 };
 </script>
 
 <style lang="scss" scoped>
 .header {
     &__container {
+        position: relative;
+
         padding-top: 35px;
         padding-bottom: 35px;
 
@@ -46,37 +77,13 @@ export default {
 
     &__logo {
         font-size: 24px;
+        line-height: 29px;
         font-weight: 600;
         text-transform: uppercase;
     }
 
     &__menu {
         width: calc(75% - 20px);
-    }
-}
-
-.menu {
-    display: flex;
-    align-items: center;
-    gap: 44px;
-
-    &__item {
-    }
-
-    &__item_catalog {
-        margin-right: auto;
-    }
-
-    &__item_active {
-        font-size: 18px;
-        font-weight: 500;
-        color: #FF6B00;
-    }
-
-    &__link {
-        &:hover {
-            color: #FF6B00;
-        }
     }
 }
 </style>

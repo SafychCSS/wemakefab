@@ -43,6 +43,10 @@ button {
     cursor: pointer;
 }
 
+img {
+    max-width: 100%;
+}
+
 .container {
     max-width: 1440px;
     padding-left: 20px;
@@ -91,4 +95,34 @@ button {
 
     background-color: #1B1B1B;
     border: 1px solid transparent;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+
+    &__item {
+        position: relative;
+    }
+
+    &__item_catalog {
+        margin-right: auto;
+    }
+
+    &__item_active {
+        font-size: 18px;
+        font-weight: 500;
+        color: #FF6B00;
+    }
+
+    &__link {
+        &:hover {
+            color: #FF6B00;
+        }
+    }
+
+    &__link_active {
+        color: #FF6B00;
+    }
 }

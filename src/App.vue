@@ -1,6 +1,9 @@
 <template>
     <div class="wrapper">
-        <TheHeader/>
+        <TheHeader
+            @toggleCart="toggleCart"
+            :show-cart="showCart"
+        />
 
         <div class="wrapper__filters">
             <CatalogFilter
@@ -27,8 +30,15 @@
                         <CatalogCard :item-card="item" />
                     </div>
                 </div>
+                <p v-if="!filteredGoods.length">Empty</p>
             </div>
         </div>
+
+        <div
+            @click="toggleCart(false)"
+            v-if="showOverlay"
+            class="overlay"
+        />
     </div>
 </template>
 
@@ -53,6 +63,9 @@ export default {
                 category: 'Sneakers',
                 search: '',
             },
+
+            showCart: false,
+            showOverlay: false,
         };
     },
 
@@ -73,12 +86,30 @@ export default {
 
     async created() {
         await this.$store.dispatch('loadGoods');
+
+        if (localStorage.getItem('wmfcart')) {
+            const savedItems = JSON.parse(localStorage.getItem('wmfcart'));
+            const items = this.$store.state.goods.filter(item => {
+                return savedItems.includes(item.id);
+            });
+            items.forEach(item => this.$store.dispatch('addToCard', item));
+        }
     },
 
     methods: {
         changeFilters(data) {
             this.filters = {...data};
         },
+
+        toggleCart(flag) {
+            if (flag) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+            this.showOverlay = flag;
+            this.showCart = flag;
+        }
     },
 };
 </script>
@@ -109,4 +140,15 @@ export default {
     }
 }
 
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 90;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.6);
+}
 </style>
